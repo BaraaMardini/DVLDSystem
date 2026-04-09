@@ -117,18 +117,46 @@ To run the project correctly:
 Each user may have a different SQL Server setup.
 
 1. Open `App.config`  
-2. Update the connection string:
+2. Locate the connection string:
 
-connectionString="Server=YOUR_SERVER_NAME;Database=DVLD;Integrated Security=True;"
 ```xml
-connectionString="Server=.;Database=DVLD;Integrated Security=True;"
-connectionString="Server=YOUR_SERVER_NAME;Database=DVLD;Integrated Security=True;"
-🚀 Startup Project
+	<connectionStrings>
+		<add name="DefaultConnection"
+			 connectionString="Server=.;Database=DVLD;Integrated Security=True;" />
+	</connectionStrings>
+
+
+```
+
+### 🚀 Startup Project
 
 Before running the application:
 
-Right-click on the project in Solution Explorer
-Select Set as Startup Project
-Choose:
-LoginAccount
-⚠️ The application will not run correctly if another project is selected.
+1. In Solution Explorer, right-click on the project `LoginAccount`
+2. Select **Set as Startup Project**
+
+> ⚠️ The application may not run correctly if another project is set as startup.
+>
+> ### 🗄️ Restore Database
+
+If the DVLD database is not present on your machine:
+
+1. Open **SQL Server Management Studio (SSMS)**.  
+2. In the **Databases** node, select **Restore Database**.  
+3. Choose the backup file `DVLD.bak` provided in the project.  
+4. Ensure the restored database name matches the **connection string** in `App.config`.  
+   Example:
+   ```xml
+   <connectionStrings>
+       <add name="DefaultConnection"
+            connectionString="Server=YOUR_SERVER_NAME;Database=DVLD;Integrated Security=True;"
+           
+   </connectionStrings>
+
+### 💡 Notes
+
+- Make sure SQL Server is running  
+- Ensure the **DVLD database** is restored before running  
+- Verify all projects load without errors  
+- Each user may have different credentials; update `App.config` connection string accordingly
+ذ
